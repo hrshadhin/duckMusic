@@ -13,10 +13,10 @@
 
 Route::get('/', function()
 {
-	return View::make('main');
+	return View::make('index');
 });
 
-Route::get('test', function()
+Route::get('x', function()
 {
-	return View::make('test');
+	return "alpha";
 });

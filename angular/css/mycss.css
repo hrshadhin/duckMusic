@@ -1,0 +1,13 @@
+body{
+	padding-top:80px;
+	padding-bottom: 80px;
+}
+.navbar-fixed-bottom{
+	background-color:#BDBDBD; 
+}
+.list-group li {
+    list-style: none;
+    font-size:30px;
+}
+
+
