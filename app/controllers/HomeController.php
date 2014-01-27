@@ -43,8 +43,10 @@ class HomeController extends BaseController {
 	}
 	public function artist_songs(){
 		if(Input::has('alpha') &&  Input::has('name') &&  Input::has('album'))
-			return Response::json(getSongs(Input::get('alpha'),Input::get('name'),Input::get('album'))) ;
+			$songs=getSongs(Input::get('alpha'),Input::get('name'),Input::get('album'));
+		return Response::json($songs);
 	}
+
 
 
 }

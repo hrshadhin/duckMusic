@@ -1,9 +1,11 @@
-<div ng-controller="albumsCtrl">
+<div ng-controller="songsCtrl">
 		<h3>Play songs</h3>
 		<ul class="list-group" ng-repeat="item in results">
 		
 			<li>
-			<a href="{{ item.url }}">{{ item.name }}</a>
+			<a  ng-click="click( item.url )" class="button grow button pop button float-shadow">
+			<span class="glyphicon glyphicon-music"> {{ item.name }}</span>
+			</a>
 			</li>
 	
 		</ul>

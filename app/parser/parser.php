@@ -20,15 +20,19 @@ function select_artist_by_name($name){
 		$html = file_get_html($url);
 		$dataArtists = array();
 		foreach ($html->find('a.autoindex_a') as $link) {
-			    		if(strstr($link, 'browse')){
-					   
-					      	$dataArtists[] = $link->plaintext;
-			     
-			    		}
-			    	}
+			    foreach($link->find('strong') as $tag)
+					{
+					    $dataArtists[] = $tag->plaintext ;
+					            
+					}
+	
+			 }
+	
 		array_shift($dataArtists);
 	    return $dataArtists;
 }
+
+
 function arAlbums($alpha , $artist_name){
    $albums = array();
   $html = file_get_html('http://www.music.com.bd/download/browse' . '/' . $alpha . '/' . rawurlencode($artist_name) . "/") ;
@@ -47,7 +51,7 @@ function arAlbums($alpha , $artist_name){
 
 
 function getSongs($alpha,$arname,$album){
-	$songs=array();
+	$songs=[];
         $url ='http://www.music.com.bd/download/browse' . '/' . $alpha . '/' . rawurlencode($arname) . '/'.rawurlencode($album)."/";
 		$html = file_get_html($url);
 		foreach ($html->find('.snap_shots') as $link) {
@@ -78,11 +82,5 @@ function getSongs($alpha,$arname,$album){
 	return $songs;
        
 	}
-
-
-
-
- 
-
 
 ?>
