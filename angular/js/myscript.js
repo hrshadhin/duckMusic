@@ -39,7 +39,7 @@ function spaceRemove(darray){
 
 }
 
-var rootURL = "http://duck.dev/lara/";
+var rootURL = "http://localhost/Hiren-Music/public/index.php/";
 duckApp.controller('alphaCtrl' , function($scope ,$http , $location){
   $http.get( rootURL + 'alpha').success(function(data){
     $scope.results = data ;
@@ -70,8 +70,8 @@ duckApp.controller('albumsCtrl' , function($scope , $http , $location , $routePa
 duckApp.controller('songsCtrl' , function($scope , $http , $location , $routeParams){
   $http.post( (rootURL + 'songs') , {'alpha' : $routeParams.alpha,'name' : $routeParams.arName,'album' : $routeParams.album }).success(function(data){
     $scope.results = data;
-    console.dir($scope.results[0]);
-    
+    //console.dir($scope.results);
+    //console.log($scope.results[0].name);
   });
   $scope.click = function(value){
     $location.path("/artists/" + $routeParams.alpha + "/" + $routeParams.arName + "/"+ encodeURI(value) + "/");

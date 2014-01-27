@@ -1,12 +1,11 @@
 <div ng-controller="albumsCtrl">
 		<h3>Play songs</h3>
-		<ul class="list-group">
-			
-			<li ng-repeat="item in results">
-				<a  ng-click="click(item)" class="button"> <i class="glyphicon glyphicon-list"></i></a>
-				
+		<ul class="list-group" ng-repeat="item in results">
+		
+			<li>
+			<a href="{{ item.url }}">{{ item.name }}</a>
 			</li>
-		</div>
+	
 		</ul>
 	
 </div>
