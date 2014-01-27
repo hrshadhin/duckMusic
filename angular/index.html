@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="mbdApp">
+<html lang="en" ng-app="duckApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Duck Music</title>
@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/mycss.css">
 	
 </head>
-<body ng-controller="mainController">
+<body>
 <!-- Headder row -->
     <div class="row">
        <div class="container">
@@ -50,21 +50,12 @@
 	
 		<!--right panel-->
 		
-		<div class="col-md-8">
+		<div class="col-md-10">
 			<div ng-view> </div>
 
 		</div>
 
        <!-- playlist column -->
-      
-       <div class="col-md-2">
-			<div class="bs-sidebar hidden-print affix" role="complementary">
-				
-					<div> User Playlist </div>
-					
-					
-			</div>
-		</div>
 	
 </div>
 </div>
@@ -81,6 +72,8 @@
 
 
 <!--Scripts are here-->
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/angular.min.js"></script>
 <script src="js/angular-route.min.js"></script>
 <script src="js/myscript.js"></script>

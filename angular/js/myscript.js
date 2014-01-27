@@ -1,57 +1,79 @@
-var mbdApp = angular.module('mbdApp', ['ngRoute'])
-//route section
- mbdApp.config(function($routeProvider) {
+var duckApp = angular.module('duckApp',['ngRoute']);
+
+duckApp.config(
+  function($routeProvider){
     $routeProvider
-
-      // route for the home page
-      .when('/', {
-        templateUrl : '../partials/alpha.html',
-        controller  : 'mainController'
-      })
-
-      // route for the about page
-      .when('/about', {
-        templateUrl : '../partials/about.html',
-        controller  : 'aboutController'
-      });
+    .when("/" ,{
+      templateUrl:'partials/home.html'
+      //controller: 'hirenx'
+    })
+    //http://www.music.com.bd/download/browse/
+    .when("/explore" ,{
+      templateUrl:'partials/alphaselect.html',
+      controller: 'alphaCtrl'
+    })
+    .when("/about" ,{
+      templateUrl:'partials/about.html',
+      //controller: 'alphaCtrl'
+    })
+    .when('/artist/:alpha/' ,{
+      templateUrl: 'partials/artistsNames.html' ,
+      controller : 'artistsCtrl'
+    }).when('/artists/:alpha/:arName' ,{
+      templateUrl: 'partials/albums.html' ,
+      controller : 'albumsCtrl'
+    }).when('/artists/:alpha/:arName/:album' ,{
+      templateUrl: 'partials/songs.html' ,
+      controller : 'songsCtrl'
+    });;
+   
   });
 
-  //factory section
-mbdApp.factory('mbdFactory', function() {
-  return {
-      getAtoZ: function() {
-          return  ['A','B','C','D','E','F','G','H',
-          'I','J','K','L','M','N','O','P','Q','R',
-          'S','T','U','V','W','X','Y','Z'];
-      },
-  };
+function spaceRemove(darray){
+    var clarray=[];
+    darray.forEach(function(item){
+        item=item.trim();
+        clarray.push(item);
+    });
+    return clarray;
+
+}
+
+var rootURL = "http://duck.dev/lara/";
+duckApp.controller('alphaCtrl' , function($scope ,$http , $location){
+  $http.get( rootURL + 'alpha').success(function(data){
+    $scope.results = data ;
+
+    $scope.click = function(value){
+      $location.path("/artist/" + value + "/");;
+    }
+  });
 });
- 
 
-mbdApp.controller('arCtrl', function($scope, mbdFactory) {
-  $scope.a2z = mbdFactory.getAtoZ();
+duckApp.controller('artistsCtrl' , function($scope , $http , $location , $routeParams){
+  $http.post((rootURL + 'artistsnames'),{'alpha':$routeParams.alpha}).success(function(data){
+    var cdata=spaceRemove(data);
+    $scope.results = cdata ;
+  });
+  $scope.click = function(value){
+    $location.path("/artists/" +$routeParams.alpha+"/"+encodeURI(value)+"/");
+  }
 });
-
-//controller section
-  mbdApp.controller('mainController', function($scope,$http,$location) {
-    $scope.go = function(atoz) {
-         
-          $scope.msg = atoz;
-           $http({
-            method : "GET",
-            url : "partial/home.php?action=getArtists&id="+atoz,
-        }).success(function(data){
-          $scope.comments = data;
-          $location.path("/"+atoz);
-          
-          });
-        }
-
-
+duckApp.controller('albumsCtrl' , function($scope , $http , $location , $routeParams){
+  $http.post( (rootURL + 'albums') , {'alpha' : $routeParams.alpha,'name' : $routeParams.arName }).success(function(data){
+    $scope.results = data;
   });
-
-  mbdApp.controller('aboutController', function($scope) {
-    $scope.message = 'Look! I am an about page.';
+  $scope.click = function(value){
+    $location.path("/artists/" + $routeParams.alpha + "/" + $routeParams.arName + "/"+ encodeURI(value) + "/");
+  }
+});
+duckApp.controller('songsCtrl' , function($scope , $http , $location , $routeParams){
+  $http.post( (rootURL + 'songs') , {'alpha' : $routeParams.alpha,'name' : $routeParams.arName,'album' : $routeParams.album }).success(function(data){
+    $scope.results = data;
+    console.dir($scope.results[0]);
+    
   });
-
- 
+  $scope.click = function(value){
+    $location.path("/artists/" + $routeParams.alpha + "/" + $routeParams.arName + "/"+ encodeURI(value) + "/");
+  }
+});

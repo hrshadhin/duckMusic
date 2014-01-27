@@ -15,8 +15,7 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
-
-Route::get('x', function()
-{
-	return "alpha";
-});
+Route::get('alpha','HomeController@artist_alpha');
+Route::post('artistsnames', 'HomeController@artists_names');
+Route::post('albums', 'HomeController@artist_albums');
+Route::post('songs', 'HomeController@artist_songs');

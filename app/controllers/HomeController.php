@@ -19,5 +19,33 @@ class HomeController extends BaseController {
 	{
 		return View::make('hello');
 	}
+	public function artist_alpha()
+	{
+		
+		$alpha = select_artist_by_alpha();
+		return Response::json($alpha);
+	}
+	public function artists_names()
+	{
+		if(Input::has('alpha')){
+			$artists_names = select_artist_by_name(Input::get('alpha'));
+			return Response::json($artists_names);
+		}
+		return "Wrong request";
+		
+		
+	}
+	public function artist_albums()
+	{
+		if(Input::has('alpha') &&  Input::has('name'))
+			$albums = arAlbums(Input::get('alpha'),Input::get('name'));
+		return Response::json($albums) ;
+	}
+	public function artist_songs(){
+		if(Input::has('alpha') &&  Input::has('name') &&  Input::has('album'))
+			$songs = getSongs(Input::get('alpha'),Input::get('name'),Input::get('album'));
+		return Response::json($songs) ;
+	}
+
 
 }
