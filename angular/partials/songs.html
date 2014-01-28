@@ -3,7 +3,7 @@
 		<ul class="list-group" ng-repeat="item in results">
 		
 			<li>
-			<a  ng-click="click( item.url )" class="button grow button pop button float-shadow">
+			<a  ng-click="click( item.name,item.url )" class="button grow button pop button float-shadow">
 			<span class="glyphicon glyphicon-music"> {{ item.name }}</span>
 			</a>
 			</li>

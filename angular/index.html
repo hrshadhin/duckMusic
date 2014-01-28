@@ -7,7 +7,19 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/hover-min.css">
 	<link rel="stylesheet" href="css/mycss.css">
-	
+	<link rel="stylesheet" type="text/css" href="360player.css" />
+<!-- Apache-licensed animation library -->
+<script type="text/javascript" src="berniecode-animator.js"></script>
+
+<!-- the core stuff -->
+<script type="text/javascript" src="soundmanager2.js"></script>
+<script type="text/javascript" src="360player.js"></script>
+<script type="text/javascript">
+soundManager.setup({
+  // path to directory containing SM2 SWF
+  url: 'swf/'
+});
+</script>
 </head>
 <body>
 <!-- Headder row -->
@@ -64,9 +76,12 @@
 
 <!-- Player codes -->
 <div class="row">
-    <div class="container player">
+    <div class="container">
 		<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-			<h1> Duck Player here</h1>
+		 <div class="ui360" style="margin-top:-0.55em"><a id="player" href="http://music-com-bd.com/Music/C/Cryptic%20Fate/Danob/01%20-%20Cryptic%20Fate%20-%20Ahoban%20(music.com.bd).mp3"</a></div>
+		 <div ng-controller="songsCtrl">
+		 	<p ng-bind-html="s"></p>
+		 </div>
 		</nav>
 	</div>
 </div>
@@ -79,5 +94,6 @@
 <script src="js/angular-route.min.js"></script>
 <script src="js/app-controler.js"></script>
 <script src="js/jstorage.min.js"></script>
+<script src="http://code.angularjs.org/1.2.10/angular-sanitize.min.js"></script>
 </body>
 </html>

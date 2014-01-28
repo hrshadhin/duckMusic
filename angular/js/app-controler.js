@@ -1,4 +1,4 @@
-var duckApp = angular.module('duckApp',['ngRoute']);
+var duckApp = angular.module('duckApp',['ngRoute','ngSanitize']);
 
 duckApp.config(
   function($routeProvider){
@@ -96,8 +96,10 @@ duckApp.controller('songsCtrl' , function($scope , $http , $location , $routePar
     }else{
                 $scope.results = $.jStorage.get($location.path()) ;
         }
-    $scope.click = function(value){
-            console.log(value)
+    $scope.click = function(name,url){
+            $scope.s=name;
+            console.log(url);
+            console.log($scope.s);
           }
 });
 
