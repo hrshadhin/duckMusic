@@ -100,8 +100,19 @@ duckApp.controller('songsCtrl' , function($scope , $http , $location , $routePar
             $scope.s=name;
             console.log(url);
             console.log($scope.s);
+            $("#jquery_jplayer_1").jPlayer({
+                ready: function () {
+                  $(this).jPlayer("setMedia", {
+                    mp3:url
+                  }).jPlayer('play');
+                },
+                swfPath: "Jplayer.swf",
+                supplied: "mp3"
+            });
           }
 });
+
+
 
 
 
