@@ -7,10 +7,9 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/hover-min.css">
 	<link rel="stylesheet" href="css/mycss.css">
-
+	<link rel="stylesheet" href="css/player.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
- 
 
 </head>
 <body>
@@ -18,7 +17,7 @@
     <div class="row">
        <div class="container">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<a class="navbar-brand" href="http://hrshadhin.tk">
+			<a class="navbar-brand" href="http://hrshadhin.me">
 				TuxBot
 				<br/> <em><small>Another Tux Lover</small></em> 
 			</a>
@@ -50,6 +49,45 @@
 							<a href="#about">About</a>
 						</li>
 					</ul>
+				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+  <div id="jp_container_1" class="jp-audio">
+      <div class="jp-gui jp-interface">
+        <div class="jp-controls">
+          <a class="jp-current-time"></a>
+          <a class="jp-duration"></a>
+          <div class="jp-progress">
+          <div class="jp-seek-bar">
+            <div class="jp-play-bar"></div>
+          </div>
+         </div>
+          <div class="btn-group">
+            <button href="javascript:;" type="button" class="btn btn-primary jp-previous"><span class="glyphicon glyphicon-backward"></span></button>
+            <button href="javascript:;" type="button" class="btn btn-primary jp-play"><span class="glyphicon glyphicon-play"></span></button>
+           <button href="javascript:;" type="button" class="btn btn-primary jp-pause"><span class="glyphicon glyphicon-pause"></span></button>
+           <button href="javascript:;" type="button" class="btn btn-primary jp-next"><span class="glyphicon glyphicon-forward"></span></button>
+          </div>
+         
+            <table id="vl">
+              <tr>
+                <td>
+                <div class="jp-volume-bar">
+          <div class="jp-volume-bar-value"></div>
+          </div>
+                </td>
+                <td>
+          <button href="javascript:;" type="button" class="btn btn-primary jp-mute"><span class="glyphicon glyphicon-volume-off"></span></button>
+           <button href="javascript:;" type="button" class="btn btn-primary jp-unmute"><span class="glyphicon glyphicon-volume-up"></span></button>
+                </td>
+              </tr>
+            </table>
+        
+      <div class="jp-no-solution">
+        <span>Update Required</span>
+        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+      </div>
+    </div>
+ </div>
+</div>
 			</div>
 		</div>
 	
@@ -70,9 +108,10 @@
 <div class="row">
     <div class="container">
 		<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-			<div id="jquery_jplayer_1">
-		  </div>
+       <h4>Test run........................</h4>
 		</nav>
+		  </div>
+		
 	</div>
 </div>
 
@@ -86,6 +125,19 @@
 <script src="js/jstorage.min.js"></script>
 <script src="http://code.angularjs.org/1.2.10/angular-sanitize.min.js"></script>
 <script src="js/jquery.jplayer.min.js"></script>
+ <script type="text/javascript">
+  $(document).ready(function(){
+      $("#jquery_jplayer_1").jPlayer({
+        ready: function () {
+          $(this).jPlayer("setMedia", {
+            mp3: ""
+          });
+        },
+        swfPath: "js/jplayer.swf",
+        supplied: "mp3"
+      });
+    });
+ </script>
 
 </body>
 </html>

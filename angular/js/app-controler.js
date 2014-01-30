@@ -1,4 +1,4 @@
-var duckApp = angular.module('duckApp',['ngRoute','ngSanitize']);
+var duckApp = angular.module('duckApp',['ngRoute']);
 
 duckApp.config(
   function($routeProvider){
@@ -100,6 +100,7 @@ duckApp.controller('songsCtrl' , function($scope , $http , $location , $routePar
             $scope.s=name;
             console.log(url);
             console.log($scope.s);
+            $("#jquery_jplayer_1").jPlayer("destroy");
             $("#jquery_jplayer_1").jPlayer({
                 ready: function () {
                   $(this).jPlayer("setMedia", {

@@ -1,0 +1,45 @@
+
+div.jp-progress{
+	height:12px;
+	width:119px;
+	background-color: #ddd;
+}
+
+div.jp-seek-bar {
+	background: url("../img/jplayer.blue.monday.jpg") 0 -202px repeat-x;
+	width:0px;
+	height:100%;
+	cursor: pointer;
+}
+div.jp-play-bar {
+	background: url("../img/jplayer.blue.monday.jpg") 0 -218px repeat-x ;
+	width:0px;
+	height:100%;
+}
+button
+div.jp-seeking-bg {
+	background: url("../img/jplayer.blue.monday.seeking.gif");
+}
+
+div.jp-volume-bar {
+	
+	overflow:hidden;
+	background: url("../img/jplayer.blue.monday.jpg") 0 -250px repeat-x;
+	width:75px;
+	height:5px;
+	cursor: pointer;
+}
+
+div.jp-volume-bar-value {
+	background: url("../img/jplayer.blue.monday.jpg") 0 -256px repeat-x;
+	width:0px;
+	height:5px;
+}
+#vl{
+	padding-top:4px;
+}
+div.jp-controls a{
+	text-decoration: none;
+	padding-right:40px;
+
+}
