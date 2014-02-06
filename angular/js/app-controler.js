@@ -39,7 +39,7 @@ function spaceRemove(darray){
 
 }
 
-var rootURL = "http://duck.hrshadhin.me/lara/";
+var rootURL = "http://duck.dev/lara/";
 
 duckApp.controller('alphaCtrl' , function($scope ,$http , $location){
   var data = $.jStorage.get($location.path());

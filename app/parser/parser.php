@@ -1,7 +1,6 @@
 
 <?php
 include "simple_html_dom.php";
-
 function select_artist_by_alpha(){
   $alpha =array();
   $html = file_get_html('http://www.music.com.bd/download/browse/');
@@ -35,14 +34,27 @@ function select_artist_by_name($name){
 
 function arAlbums($alpha , $artist_name){
    $albums = array();
+   $flag=0;
   $html = file_get_html('http://www.music.com.bd/download/browse' . '/' . $alpha . '/' . rawurlencode($artist_name) . "/") ;
     foreach ($html->find('a.autoindex_a') as $link) {
       $al =$link->href;
     foreach($link->find('strong') as $tag)
        {
-             $albums[] = $tag->plaintext ;
+       		$aname =$tag->plaintext;
+       		if(strstr($aname,'.mp3')){
+
+       			$flag=1;
+       		}
+       		else
+       		{
+       			 $albums[] = $aname;
+       		}
+            
              
        }
+     }
+     if($flag==1){
+     	$albums[]="Others";
      }
      //To do - lonely mp3 file check
      array_shift($albums); //Removed "parent directory"
@@ -50,9 +62,17 @@ function arAlbums($alpha , $artist_name){
 }
 
 
-function getSongs($alpha,$arname,$album){
+function Songs($alpha,$arname,$album){
 	$songs=[];
-        $url ='http://www.music.com.bd/download/browse' . '/' . $alpha . '/' . rawurlencode($arname) . '/'.rawurlencode($album)."/";
+	if($album=="Others"){
+		$url='http://www.music.com.bd/download/browse' . '/' . $alpha . '/' . rawurlencode($arname) . '/';
+	}
+	else
+	{
+		$url ='http://www.music.com.bd/download/browse' . '/' . $alpha . '/' . rawurlencode($arname) . '/'.rawurlencode($album)."/";
+
+	}
+
 		$html = file_get_html($url);
 		foreach ($html->find('.snap_shots') as $link) {
 
@@ -82,5 +102,6 @@ function getSongs($alpha,$arname,$album){
 	return $songs;
        
 	}
+
 
 ?>
